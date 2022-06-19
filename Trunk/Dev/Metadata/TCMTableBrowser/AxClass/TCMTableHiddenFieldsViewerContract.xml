@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableHiddenFieldsViewerContract</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Data contract
+/// </summary>
+[DataContractAttribute]
+class TCMTableHiddenFieldsViewerContract implements SysOperationValidatable
+{
+    protected Common record;
+   
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmRecord</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Record
+    /// </summary>
+    /// <param name = "_record">Record</param>
+    /// <returns>Record</returns>
+    public Common parmRecord(Common _record = record)
+    {
+        record = _record;
+
+        return record;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validate</Name>
+				<Source><![CDATA[
+    public boolean validate()
+    {
+        boolean ok = true;
+
+        if(!record)
+        {
+            ok = checkFailed("@TCM:TableBufferIsMissing");
+        }
+
+        return ok;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

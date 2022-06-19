@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMEntityDefinitionController</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Controller class
+/// </summary>
+class TCMEntityDefinitionController extends SysOperationServiceController
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        var controller = TCMEntityDefinitionController::construct();
+		        
+        controller.initializeFromArgs(_args);
+        controller.parmShowDialog(false);
+        controller.startOperation();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    public static TCMEntityDefinitionController construct(
+        SysOperationExecutionMode _executionMode = SysOperationExecutionMode::Synchronous)
+    {
+        var controller = new TCMEntityDefinitionController();
+
+        controller.parmExecutionMode(_executionMode);
+        
+        return controller;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initializeFromArgs</Name>
+				<Source><![CDATA[
+    public void initializeFromArgs(Args _args)
+    {
+        EntityName entityName;
+       
+        if (_args
+        &&  _args.record()
+        &&  _args.record().tableId == tableNum(TCMEntityList))
+        {
+            TCMEntityList tCMEntityList = _args.record();
+
+            entityName = tCMEntityList.EntityNameId;
+        }
+
+        var dataContract = this.getDataContractObject() as TCMEntityDefinitionContract;
+        if (dataContract != null)
+        {
+            dataContract.parmEntityName(entityName);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    protected void new()
+    {
+        super(
+			classStr(TCMEntityDefinitionService),
+            methodStr(TCMEntityDefinitionService, doProcess),
+            SysOperationExecutionMode::Synchronous);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

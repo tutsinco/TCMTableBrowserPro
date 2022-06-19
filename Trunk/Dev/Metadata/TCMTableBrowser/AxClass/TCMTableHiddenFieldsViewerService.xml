@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableHiddenFieldsViewerService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Populate and show hidden table fields
+/// </summary>
+class TCMTableHiddenFieldsViewerService
+{    
+    private TCMTmpTableHiddenFields  tmpTableHiddenFields;
+ 
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>tCMTmpTableHiddenFields</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Data source
+    /// </summary>
+    /// <returns>Data source of type <c>TCMTmpTableHiddenFields</c></returns>
+    public TCMTmpTableHiddenFields tCMTmpTableHiddenFields()
+    {
+        return tmpTableHiddenFields;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>doProcess</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process
+    /// </summary>
+    /// <param name = "_dataContract">Instance of data contract class <c>TCMTableHiddenFieldsViewerContract</c></param>
+    public void doProcess(TCMTableHiddenFieldsViewerContract _dataContract)
+    {
+        this.populate(_dataContract.parmRecord());
+        this.openForm();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>openForm</Name>
+				<Source><![CDATA[
+    private void openForm()
+    {              
+        var args = new Args();
+        args.caller(this);
+        
+        MenuFunction::runCalled(menuItemDisplayStr(TCMTableHiddenFieldsViewerForm),MenuItemType::Display, false, args);
+     }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>populate</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Populate data source
+    /// </summary>
+    /// <param name = "_record">Record</param>
+    protected void populate(Common _record)
+    {      
+        try
+        {
+            delete_from tmpTableHiddenFields;
+
+            var recordInsertList = new RecordInsertList(tableNum(TCMTmpTableHiddenFields), true, false, false, false, false, tmpTableHiddenFields);
+
+            var dictTable  = SysDictTable::newTableId(_record.TableId);
+        
+            var fieldSet = dictTable.fields();
+        
+            var se = fieldSet.getEnumerator();       
+            while(se.moveNext())
+            {
+                SysDictField dictField = se.current();            
+
+                if (dictField.visible() == false)
+                {
+                    tmpTableHiddenFields.clear();
+                    tmpTableHiddenFields.FieldName = dictField.name();
+                    tmpTableHiddenFields.FieldValue = any2Str(_record.(dictField.id()));
+                                                                                                   
+                    recordInsertList.add(tmpTableHiddenFields);
+                }
+            }
+
+            recordInsertList.insertDatabase();
+        }
+        catch
+        {
+            throw error("@TCM:OperationCanceled");
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

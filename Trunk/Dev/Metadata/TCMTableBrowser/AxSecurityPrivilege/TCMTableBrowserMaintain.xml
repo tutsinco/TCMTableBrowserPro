@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxSecurityPrivilege xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableBrowserMaintain</Name>
+	<Label>@TCM:MaintainPrivilege</Label>
+	<DataEntityPermissions />
+	<DirectAccessPermissions />
+	<EntryPoints>
+		<AxSecurityEntryPointReference>
+			<Name>TCMFlushAOD</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMFlushAOD</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMFlushData</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMFlushData</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMFlushDictionary</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMFlushDictionary</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableHiddenFieldsViewerController</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableHiddenFieldsViewerController</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableHiddenFieldsViewerForm</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableHiddenFieldsViewerForm</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMTableHiddenFieldsViewerForm</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+	</EntryPoints>
+	<FormControlOverrides />
+</AxSecurityPrivilege>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxSecurityPrivilege xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableBrowserView</Name>
+	<Label>@TCM:ViewPrivilege</Label>
+	<DataEntityPermissions />
+	<DirectAccessPermissions />
+	<EntryPoints>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableDefinitionForm</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableDefinitionForm</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMTableDefinitionForm</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableList</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableList</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMTableList</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableCalcListController</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableCalcListController</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableDefinitionController</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableDefinitionController</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMEntityDefinitionForm</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMEntityDefinitionForm</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMEntityDefinitionForm</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMEntityDefinitionController</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMEntityDefinitionController</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMEntityList</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMEntityList</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMEntityList</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMEntityCalcListController</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMEntityCalcListController</ObjectName>
+			<ObjectType>MenuItemAction</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMEntityGetLinkAction</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMEntityGetLinkAction</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMEntityGetLinkAction</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableBrowserGetLinkAction</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableBrowserGetLinkAction</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms>
+				<AxSecurityEntryPointReferenceForm>
+					<Name>TCMTableBrowserGetLinkAction</Name>
+					<Controls />
+					<DataSources />
+				</AxSecurityEntryPointReferenceForm>
+			</Forms>
+		</AxSecurityEntryPointReference>
+		<AxSecurityEntryPointReference>
+			<Name>TCMTableBrowser</Name>
+			<Grant>
+				<Correct>Allow</Correct>
+				<Create>Allow</Create>
+				<Delete>Allow</Delete>
+				<Read>Allow</Read>
+				<Update>Allow</Update>
+			</Grant>
+			<ObjectName>TCMTableBrowser</ObjectName>
+			<ObjectType>MenuItemDisplay</ObjectType>
+			<Forms />
+		</AxSecurityEntryPointReference>
+	</EntryPoints>
+	<FormControlOverrides />
+</AxSecurityPrivilege>

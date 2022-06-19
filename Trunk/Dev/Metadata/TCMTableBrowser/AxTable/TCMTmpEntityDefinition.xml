@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTmpEntityDefinition</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class TCMTmpEntityDefinition extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>initFromSysDictField</Name>
+				<Source><![CDATA[
+    public void initFromSysDictField(SysDictField _sysDictField)
+    {
+        this.FieldType		= _sysDictField.baseType();
+        this.StringLength	= _sysDictField.stringLen();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initFromAxDataEntityViewField</Name>
+				<Source><![CDATA[
+    public void initFromAxDataEntityViewField(Microsoft.Dynamics.AX.Metadata.MetaModel.AxDataEntityViewField _entityViewField)
+    {
+        this.AllowEdit	= _entityViewField.AllowEdit;
+        this.FieldLabel	= SysLabel::labelId2String(_entityViewField.Label);
+        this.FieldName	= _entityViewField.Name;       
+        
+        var entityViewFieldMapped = _entityViewField as Microsoft.Dynamics.AX.Metadata.MetaModel.AxDataEntityViewMappedField;
+        if (entityViewFieldMapped != null)
+        {
+            this.DataSource = entityViewFieldMapped.DataSource;
+            this.DataField = entityViewFieldMapped.DataField;
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<Label>@TCM:TableInfo</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<TitleField1>FieldName</TitleField1>
+	<TitleField2>DataField</TitleField2>
+	<TableType>TempDB</TableType>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AllFields</Name>
+			<Label>@TCM:All</Label>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>FieldName</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FieldLabel</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>DataSource</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>DataField</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FieldType</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>StringLength</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>AllowEdit</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>FieldLabel</Name>
+			<ExtendedDataType>FieldLabel</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>FieldName</Name>
+			<ExtendedDataType>FieldNameShort</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>DataSource</Name>
+			<ExtendedDataType>String50</ExtendedDataType>
+			<Label>@TCM:DataSource</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>AllowEdit</Name>
+			<ExtendedDataType>NoYesId</ExtendedDataType>
+			<Label>@TCM:AllowEdit</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>DataField</Name>
+			<ExtendedDataType>String50</ExtendedDataType>
+			<Label>@TCM:DataField</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldInt">
+			<Name>StringLength</Name>
+			<ExtendedDataType>TCMStringLength</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>FieldType</Name>
+			<ExtendedDataType>FieldType</ExtendedDataType>
+			<Label>@TCM:Type</Label>
+			<EnumType>Types</EnumType>
+		</AxTableField>
+	</Fields>
+	<FullTextIndexes />
+	<Indexes />
+	<Mappings />
+	<Relations />
+	<StateMachines />
+</AxTable>

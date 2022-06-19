@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxFormExtension xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
+	<Name>SysTableBrowser.TCMTableBrowserExtension</Name>
+	<ConfigurationKey>TCM</ConfigurationKey>
+	<ControlModifications />
+	<Controls>
+		<AxFormExtensionControl xmlns="">
+			<Name>FormExtensionControlrxgragv11</Name>
+			<FormControl xmlns=""
+				i:type="AxFormButtonGroupControl">
+				<Name>TCM</Name>
+				<Type>ButtonGroup</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Controls>
+					<AxFormControl xmlns=""
+						i:type="AxFormMenuFunctionButtonControl">
+						<Name>TCMTableHiddenFieldsViewerController</Name>
+						<Type>MenuFunctionButton</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<MenuItemName>TCMTableHiddenFieldsViewerController</MenuItemName>
+						<MenuItemType>Action</MenuItemType>
+					</AxFormControl>
+				</Controls>
+			</FormControl>
+			<Parent>AppBar</Parent>
+		</AxFormExtensionControl>
+	</Controls>
+	<DataSourceModifications />
+	<DataSourceReferences />
+	<DataSources />
+	<Parts />
+	<PropertyModifications />
+</AxFormExtension>

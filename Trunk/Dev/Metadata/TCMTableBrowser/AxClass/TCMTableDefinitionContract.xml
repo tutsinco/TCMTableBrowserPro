@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableDefinitionContract</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Data contract
+/// </summary>
+[DataContractAttribute]
+class TCMTableDefinitionContract implements SysOperationValidatable
+{
+    protected TableName tableName;
+   
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmTableName</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Parm method for table name
+    /// </summary>
+    /// <param name = "_tableName">Table name</param>
+    /// <returns>Table name</returns>
+    public TableName parmTableName(TableName _tableName = tableName)
+    {
+        tableName = _tableName;
+
+        return tableName;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validate</Name>
+				<Source><![CDATA[
+    public boolean validate()
+    {
+        boolean ok = true;
+
+        if(!tableName2Id(tableName))
+        {
+            ok = checkFailed(strFmt("@TCM:TableDoesNotExist", tableName));
+        }
+
+        return ok;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMEntityDefinitionContract</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Data contract
+/// </summary>
+[DataContractAttribute]
+class TCMEntityDefinitionContract implements SysOperationValidatable
+{
+    protected EntityName entityName;
+   
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmEntityName</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Parm method for entity name
+    /// </summary>
+    /// <param name = "_entityName">Entity name</param>
+    /// <returns>Entity name</returns>
+    public TableName parmEntityName(TableName _entityName = entityName)
+    {
+        entityName = _entityName;
+
+        return entityName;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validate</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// Validate 
+    /// </summary>
+    /// <returns> validation result</returns>
+    public boolean validate()
+    {
+        boolean ok = true;
+
+        if(!entityName)
+        {
+            ok = checkFailed("@TCM:EntityDoesNotExist");
+        }
+
+        return ok;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

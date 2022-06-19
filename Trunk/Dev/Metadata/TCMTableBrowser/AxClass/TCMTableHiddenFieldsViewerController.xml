@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableHiddenFieldsViewerController</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Controller class
+/// </summary>
+class TCMTableHiddenFieldsViewerController extends SysOperationServiceController
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>initializeFromArgs</Name>
+				<Source><![CDATA[
+    public void initializeFromArgs(Args _args)
+    {
+        Common record;
+
+        if (_args && _args.record())
+        {
+            record = _args.record();
+        }
+
+        var dataContract = this.getDataContractObject() as TCMTableHiddenFieldsViewerContract;
+        if (dataContract != null)
+        {
+            dataContract.parmRecord(record);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    protected void new()
+    {
+        super(
+            classStr(TCMTableHiddenFieldsViewerService),
+            methodStr(TCMTableHiddenFieldsViewerService, doProcess),
+            SysOperationExecutionMode::Synchronous);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        var controller = TCMTableHiddenFieldsViewerController::construct();
+		        
+        controller.initializeFromArgs(_args);
+        controller.parmShowDialog(false);
+        controller.startOperation();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    public static TCMTableHiddenFieldsViewerController construct(
+        SysOperationExecutionMode _executionMode = SysOperationExecutionMode::Synchronous)
+    {
+        var controller = new TCMTableHiddenFieldsViewerController();
+
+        controller.parmExecutionMode(_executionMode);
+        
+        return controller;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

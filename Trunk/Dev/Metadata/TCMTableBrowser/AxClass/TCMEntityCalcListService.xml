@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMEntityCalcListService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+using System.Collections.Generic;
+
+/// <summary>
+/// Calculation table list service
+/// </summary>
+class TCMEntityCalcListService
+{
+}
+
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>processOperation</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process operation
+    /// </summary>
+    public void processOperation()
+    {
+        ttsbegin;
+
+        this.cleanUpData();
+        this.recalc();
+
+        ttscommit;
+
+        info("@TCM:RefreshIsDone");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>cleanUpData</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Clean up date
+    /// </summary>
+    protected void cleanUpData()
+    {
+        TCMEntityList entityList;
+        
+        delete_from entityList;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>recalc</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Recalculate
+    /// </summary>
+    protected void recalc()
+    {                            
+        var provider = TCMTableBrowserUtil::getRunTimeMetadataProvider();
+        var service = new Microsoft.Dynamics.AX.Metadata.Service.MetaModelServiceFactory().Create(provider);
+
+        var recordInsertList = new RecordInsertList(tableNum(TCMEntityList));
+              
+        this.processEntityList(service, recordInsertList);                
+        
+        recordInsertList.insertDatabase();                
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processEntityList</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process table list
+    /// </summary>
+    /// <param name = "_service">service</param>
+    /// <param name = "_recordInsertList">record insert list</param>
+    protected void processEntityList(Microsoft.Dynamics.AX.Metadata.Service.IMetaModelService _service, RecordInsertList _recordInsertList)
+    {    
+        var entityList = _service.GetDataEntityViewNames();
+                               
+        var le = entityList.GetEnumerator();
+
+        while (le.moveNext())
+        {
+            var entityName = le.get_Current();  		  		          
+
+            this.processEntity(entityName, _recordInsertList);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process entity
+    /// </summary>
+    /// <param name = "_entityName">name</param>
+    /// <param name = "_recordInsertList"> record insert list</param>
+	protected void processEntity(name _entityName, RecordInsertList _recordInsertList)
+    {      		
+        TCMEntityList entityList;
+		
+        Microsoft.Dynamics.AX.Metadata.MetaModel.AxDataEntityView axDataEntity = Microsoft.Dynamics.Ax.Xpp.MetadataSupport::GetDataEntityView(_entityName);
+
+        if (axDataEntity)
+        {
+            entityList.EntityNameId = axDataEntity.Name;
+            entityList.PublicName	= axDataEntity.PublicCollectionName;            
+            entityList.LabelText	= SysLabel::labelId2String(axDataEntity.Label);
+            entityList.IsPublic		= axDataEntity.IsPublic;
+            _recordInsertList.add(entityList);            
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

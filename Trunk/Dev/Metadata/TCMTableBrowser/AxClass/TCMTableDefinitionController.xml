@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableDefinitionController</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Controller class
+/// </summary>
+class TCMTableDefinitionController extends SysOperationServiceController
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        var controller = TCMTableDefinitionController::construct();
+		        
+        controller.initializeFromArgs(_args);
+        controller.parmShowDialog(false);
+        controller.startOperation();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    public static TCMTableDefinitionController construct(
+        SysOperationExecutionMode _executionMode =
+            SysOperationExecutionMode::Synchronous)
+    {
+        var controller = new TCMTableDefinitionController();
+
+        controller.parmExecutionMode(_executionMode);
+        
+        return controller;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initializeFromArgs</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// initalize from args
+    /// </summary>
+    /// <param name = "_args">Args</param>
+    public void initializeFromArgs(Args _args)
+    {
+        TableName tableName;
+
+        if (_args
+        &&  _args.record()
+        &&  _args.record().tableId == tableNum(TCMTableList))
+        {
+            TCMTableList tCMTableList = _args.record();
+
+            tableName = tCMTableList.TableName;
+        }
+
+        var dataContract = this.getDataContractObject() as TCMTableDefinitionContract;
+        if (dataContract != null)
+        {
+            dataContract.parmTableName(tableName);                
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    protected void new()
+    {
+        super(classStr(TCMTableDefinitionService), methodStr(TCMTableDefinitionService, doProcess), SysOperationExecutionMode::Synchronous);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

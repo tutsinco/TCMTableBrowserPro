@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxForm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
+	<Name>TCMTableDefinitionForm</Name>
+	<SourceCode>
+		<Methods xmlns="">
+			<Method>
+				<Name>classDeclaration</Name>
+				<Source><![CDATA[
+[Form]
+public class TCMTableDefinitionForm extends FormRun
+{
+}
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {                    
+        super();
+
+        TCMTableDefinitionService tableDefinitionService;
+
+        if (element.args() && element.args().caller())
+        {
+            tableDefinitionService = element.args().caller() as TCMTableDefinitionService;
+        }
+
+        if (!tableDefinitionService)
+        {
+            throw error("@TCM:WrongUseOfFunction");
+        }
+        
+        tCMTmpTableDefinition.linkPhysicalTableInstance(tableDefinitionService.tCMTmpTableDefinition());
+        tCMTmpTableDefinition_ds.research();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+		<DataSources xmlns="" />
+		<DataControls xmlns="" />
+		<Members xmlns="" />
+	</SourceCode>
+	<DataSources>
+		<AxFormDataSource xmlns="">
+			<Name>TCMTmpTableDefinition</Name>
+			<Table>TCMTmpTableDefinition</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>AllowEdit</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>AllowEditOnCreate</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>BaseFieldType</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ConfigKey</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ExtEDT</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ExtFieldId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FieldHelp</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FieldLabel</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FieldLength</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FieldName</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FieldType</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>isMandatory</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>IsSystemField</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>IsUnique</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<AutoNotify>No</AutoNotify>
+			<AllowCreate>No</AllowCreate>
+			<AllowDelete>No</AllowDelete>
+			<AllowEdit>No</AllowEdit>
+			<InsertAtEnd>No</InsertAtEnd>
+			<InsertIfEmpty>No</InsertIfEmpty>
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+	</DataSources>
+	<Design>
+		<Caption xmlns="">@TCM:TableDefinition</Caption>
+		<Pattern xmlns="">SimpleList</Pattern>
+		<PatternVersion xmlns="">1.1</PatternVersion>
+		<Style xmlns="">SimpleList</Style>
+		<Controls xmlns="">
+			<AxFormControl xmlns=""
+				i:type="AxFormActionPaneControl">
+				<Name>TableInfoActionPaneControl</Name>
+				<Type>ActionPane</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Controls />
+			</AxFormControl>
+			<AxFormControl xmlns=""
+				i:type="AxFormGroupControl">
+				<Name>Filter</Name>
+				<Pattern>CustomAndQuickFilters</Pattern>
+				<PatternVersion>1.1</PatternVersion>
+				<Type>Group</Type>
+				<WidthMode>SizeToAvailable</WidthMode>
+				<FormControlExtension
+					i:nil="true" />
+				<Controls>
+					<AxFormControl>
+						<Name>QuickFilterControl1</Name>
+						<FormControlExtension>
+							<Name>QuickFilterControl</Name>
+							<ExtensionComponents />
+							<ExtensionProperties>
+								<AxFormControlExtensionProperty>
+									<Name>targetControlName</Name>
+									<Type>String</Type>
+								</AxFormControlExtensionProperty>
+								<AxFormControlExtensionProperty>
+									<Name>placeholderText</Name>
+									<Type>String</Type>
+								</AxFormControlExtensionProperty>
+								<AxFormControlExtensionProperty>
+									<Name>defaultColumnName</Name>
+									<Type>String</Type>
+								</AxFormControlExtensionProperty>
+							</ExtensionProperties>
+						</FormControlExtension>
+					</AxFormControl>
+				</Controls>
+				<ArrangeMethod>HorizontalLeft</ArrangeMethod>
+				<FrameType>None</FrameType>
+				<Style>CustomFilter</Style>
+				<ViewEditMode>Edit</ViewEditMode>
+			</AxFormControl>
+			<AxFormControl xmlns=""
+				i:type="AxFormGridControl">
+				<Name>Grid</Name>
+				<Type>Grid</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Controls>
+					<AxFormControl xmlns=""
+						i:type="AxFormStringControl">
+						<Name>Grid_FieldName</Name>
+						<Type>String</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>FieldName</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormStringControl">
+						<Name>Grid_FieldLabel</Name>
+						<Type>String</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>FieldLabel</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormComboBoxControl">
+						<Name>Grid_FieldType</Name>
+						<Type>ComboBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>FieldType</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+						<Items />
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormStringControl">
+						<Name>Grid_ExtEDT</Name>
+						<Type>String</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>ExtEDT</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormIntegerControl">
+						<Name>Grid_FieldLength</Name>
+						<Type>Integer</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>FieldLength</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormCheckBoxControl">
+						<Name>Grid_isMandatory</Name>
+						<Type>CheckBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>isMandatory</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormCheckBoxControl">
+						<Name>Grid_AllowEdit</Name>
+						<Type>CheckBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>AllowEdit</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormCheckBoxControl">
+						<Name>Grid_IsSystemField</Name>
+						<Type>CheckBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>IsSystemField</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormStringControl">
+						<Name>Grid_ConfigKey</Name>
+						<Type>String</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>ConfigKey</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormCheckBoxControl">
+						<Name>Grid_IsPrimaryIndex</Name>
+						<Type>CheckBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>IsPrimaryIndex</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormCheckBoxControl">
+						<Name>Grid_IsClusteredIndex</Name>
+						<Type>CheckBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>IsClusteredIndex</DataField>
+						<DataSource>TCMTmpTableDefinition</DataSource>
+					</AxFormControl>
+				</Controls>
+				<DataGroup>AllFields</DataGroup>
+				<DataSource>TCMTmpTableDefinition</DataSource>
+				<Style>Tabular</Style>
+			</AxFormControl>
+		</Controls>
+	</Design>
+	<Parts />
+</AxForm>

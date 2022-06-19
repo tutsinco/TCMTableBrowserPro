@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableDefinitionService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Service class for table definition function
+/// </summary>
+public class TCMTableDefinitionService
+{
+    protected TCMTmpTableDefinition tmpTableDefinition;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>tCMTmpTableDefinition</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Data source
+    /// </summary>
+    /// <returns>Data source</returns>
+    public TCMTmpTableDefinition tCMTmpTableDefinition()
+    {
+        return tmpTableDefinition;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>doProcess</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// Process 
+    /// </summary>
+    /// <param name = "_dataContract">Instance of data contract class <c>TCMTableDefinitionContract</c></param>
+    public void doProcess(TCMTableDefinitionContract _dataContract)
+    {
+        this.populate(_dataContract.parmTableName());
+        this.openForm();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>openForm</Name>
+				<Source><![CDATA[
+    private void openForm()
+    {
+        var args = new Args();
+
+        args.caller(this);
+                
+        MenuFunction::runCalled(menuItemDisplayStr(TCMTableDefinitionForm),MenuItemType::Display, false, args);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>populate</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Populate data
+    /// </summary>
+    /// <param name = "_tableName">Table name</param>
+    protected void populate(TableName _tableName)
+    {
+        try
+        {
+            delete_from tmpTableDefinition;
+
+            var recordInsertList = new RecordInsertList(tableNum(TCMTmpTableDefinition), true, false, false, false, false, tmpTableDefinition);
+
+            var dictTable  = SysDictTable::newName(_tableName);
+            var primaryIndexFieldSet = this.getPrimaryIndexFieldList(dictTable);
+            var clusteredIndexFieldSet = this.getClusteredIndexFieldList(dictTable);
+
+            var fieldSet = dictTable.fields();
+
+            var se = fieldSet.getEnumerator();
+            while(se.moveNext())
+            {
+                SysDictField dictField = se.current();
+
+                tmpTableDefinition.clear();
+                tmpTableDefinition.initFormSysDictField(dictField);
+
+                tmpTableDefinition.IsClusteredIndex  = clusteredIndexFieldSet.in(tmpTableDefinition.FieldName);
+                tmpTableDefinition.IsPrimaryIndex    = primaryIndexFieldSet.in(tmpTableDefinition.FieldName);
+                                                                                    
+                recordInsertList.add(tmpTableDefinition);
+            }
+
+            recordInsertList.insertDatabase();
+        }
+        catch
+        {
+            throw error("@TCM:OperationCanceled");
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getPrimaryIndexFieldList</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// Return list of fields in primary index
+    /// </summary>
+    /// <param name = "_dictTable">Instance of class <c>SysDictTable</c></param>
+    /// <returns>list of fields in primary index</returns>
+    protected Set getPrimaryIndexFieldList(SysDictTable _dictTable)
+    {
+        var dictIndex = _dictTable.indexObject(_dictTable.primaryIndex());
+        
+        return this.getIndexFieldList(_dictTable, dictIndex);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getClusteredIndexFieldList</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Return list of fields in clustered index
+    /// </summary>
+    /// <param name = "_dictTable">Instance of class <c>SysDictTable</c></param>
+    /// <returns>list of fields in clustered index</returns>
+    protected Set getClusteredIndexFieldList(SysDictTable _dictTable)
+    {
+        var dictIndex = _dictTable.indexObject(_dictTable.clusterIndex());
+        
+        return this.getIndexFieldList(_dictTable, dictIndex);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getIndexFieldList</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Receive index field list
+    /// </summary>
+    /// <param name = "_dictTable">Instance of class <c>SysDictTable</c></param>
+    /// <param name = "_dictIndex">Instance of class <c>DictIndex</c></param>
+    /// <returns>List of fields</returns>
+    protected Set getIndexFieldList(SysDictTable _dictTable, DictIndex _dictIndex)
+    {
+        var set = new Set(Types::String);
+                                                
+        FieldId fieldId;
+                
+        if(_dictIndex != null)
+        {
+            for (var i = 1; i <= _dictIndex.numberOfFields(); i++)
+            {
+                fieldId = _dictIndex.field(i);
+                set.add(fieldId2name(_dictTable.id(), fieldId));
+            }
+        }
+
+        return set;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxForm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
+	<Name>TCMTableBrowserGetLinkAction</Name>
+	<SourceCode>
+		<Methods xmlns="">
+			<Method>
+				<Name>classDeclaration</Name>
+				<Source><![CDATA[
+[Form]
+public class TCMTableBrowserGetLinkAction extends FormRun
+{
+}
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        super();
+
+        if (element.args() && element.args().record() && element.args().record().TableId == tableNum(TCMTableList))
+        {
+            TCMTableList tableList = element.args().record();
+
+            Link.text(TCMTableBrowserUtil::generateTableBrowserUrl(tableList.TableName));
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+		<DataSources xmlns="" />
+		<DataControls xmlns="" />
+		<Members xmlns="" />
+	</SourceCode>
+	<DataSources />
+	<Design>
+		<Caption xmlns="">@ApplicationPlatform:GetLinkFormCaption</Caption>
+		<Pattern xmlns="">DropDialogReadOnly</Pattern>
+		<PatternVersion xmlns="">1.2</PatternVersion>
+		<Style xmlns="">DropDialog</Style>
+		<ViewEditMode xmlns="">View</ViewEditMode>
+		<Controls xmlns="">
+			<AxFormControl xmlns=""
+				i:type="AxFormGroupControl">
+				<Name>ContentGroup</Name>
+				<Pattern>FillText</Pattern>
+				<PatternVersion>UX7 1.0</PatternVersion>
+				<Type>Group</Type>
+				<WidthMode>SizeToAvailable</WidthMode>
+				<FormControlExtension
+					i:nil="true" />
+				<Controls>
+					<AxFormControl xmlns=""
+						i:type="AxFormStringControl">
+						<Name>Link</Name>
+						<AutoDeclaration>Yes</AutoDeclaration>
+						<HeightMode>SizeToAvailable</HeightMode>
+						<Type>String</Type>
+						<WidthMode>SizeToAvailable</WidthMode>
+						<FormControlExtension
+							i:nil="true" />
+						<DisplayLength>400</DisplayLength>
+						<DisplayLengthMode>Fixed</DisplayLengthMode>
+						<Label>@SYS121136</Label>
+						<ShowLabel>No</ShowLabel>
+					</AxFormControl>
+				</Controls>
+				<Style>DialogContent</Style>
+			</AxFormControl>
+		</Controls>
+	</Design>
+	<Parts />
+</AxForm>

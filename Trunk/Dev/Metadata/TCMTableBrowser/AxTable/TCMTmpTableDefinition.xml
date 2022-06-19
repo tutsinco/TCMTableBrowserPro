@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTmpTableDefinition</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class TCMTmpTableDefinition extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>initFormSysDictField</Name>
+				<Source><![CDATA[
+    public void initFormSysDictField(SysDictField _sysDictField)
+    {
+        this.AllowEdit      = _sysDictField.allowEdit();
+        this.ExtEDT         = _sysDictField.typeName();
+        this.ExtFieldId     = _sysDictField.id();
+        this.FieldLabel     = _sysDictField.label();
+        this.FieldName      = _sysDictField.name();
+        this.FieldType      = _sysDictField.baseType();
+        this.FieldLength    = _sysDictField.stringLen();
+        this.IsSystemField  = _sysDictField.isSystem();
+        this.isMandatory    = _sysDictField.mandatory();
+        this.ConfigKey      = configurationkeyId2Name(_sysDictField.configurationKeyId());
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<Label>@TCM:TableInfo</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<TitleField1>FieldName</TitleField1>
+	<TitleField2>FieldType</TitleField2>
+	<TableType>TempDB</TableType>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AllFields</Name>
+			<Label>@TCM:All</Label>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>FieldName</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FieldLabel</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FieldType</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>ExtEDT</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FieldLength</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>IsMandatory</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>AllowEdit</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>IsSystemField</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>ConfigKey</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>IsPrimaryIndex</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>IsClusteredIndex</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>FieldLabel</Name>
+			<ExtendedDataType>FieldLabel</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>FieldName</Name>
+			<ExtendedDataType>FieldNameShort</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldInt">
+			<Name>ExtFieldId</Name>
+			<ExtendedDataType>FieldId</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldInt">
+			<Name>FieldLength</Name>
+			<ExtendedDataType>TCMStringLength</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>FieldType</Name>
+			<ExtendedDataType>FieldType</ExtendedDataType>
+			<Label>@TCM:Type</Label>
+			<EnumType>Types</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>IsMandatory</Name>
+			<ExtendedDataType>NoYesId</ExtendedDataType>
+			<Label>@TCM:Mandatory</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>ExtEDT</Name>
+			<ExtendedDataType>Str60</ExtendedDataType>
+			<Label>@TCM:EDT</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>BaseFieldType</Name>
+			<ExtendedDataType>FieldSetup</ExtendedDataType>
+			<Label>@TCM:BaseType</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>AllowEdit</Name>
+			<ExtendedDataType>NoYesId</ExtendedDataType>
+			<Label>@TCM:AllowEdit</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>IsSystemField</Name>
+			<ExtendedDataType>NoYesId</ExtendedDataType>
+			<Label>@TCM:SystemField</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>ConfigKey</Name>
+			<ExtendedDataType>ConfigurationKeyName</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>IsPrimaryIndex</Name>
+			<ExtendedDataType>NoYesId</ExtendedDataType>
+			<Label>@TCM:PrimaryIndex</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>IsClusteredIndex</Name>
+			<ExtendedDataType>NoYesId</ExtendedDataType>
+			<Label>@TCM:ClusteredIndex</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+	</Fields>
+	<FullTextIndexes />
+	<Indexes />
+	<Mappings />
+	<Relations />
+	<StateMachines />
+</AxTable>

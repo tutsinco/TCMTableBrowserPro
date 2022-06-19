@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMEntityCalcListController</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Calculate table list
+/// </summary>
+class TCMEntityCalcListController extends SysOperationServiceController
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// constructor
+    /// </summary>
+    protected void new()
+    {
+        super();
+    
+        this.parmClassName(classStr(TCMEntityCalcListService));
+        this.parmMethodName(methodStr(TCMEntityCalcListService, processOperation));
+    
+        this.parmDialogCaption("@TCM:UpdateEntityList");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>caption</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Caption
+    /// </summary>
+    /// <returns>Caption</returns>
+    public ClassDescription caption()
+    {
+        return "@TCM:UpdateEntityList";
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Main method
+    /// </summary>
+    /// <param name = "args">Args</param>
+    public static void main(Args args)
+    {
+        TCMEntityCalcListController controller;
+    
+        controller = new TCMEntityCalcListController();
+        controller.startOperation();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

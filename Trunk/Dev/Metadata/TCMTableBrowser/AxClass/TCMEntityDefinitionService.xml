@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMEntityDefinitionService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Entity definition service class
+/// </summary>
+class TCMEntityDefinitionService
+{
+    TCMTmpEntityDefinition tmpEntityDefinition;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>tCMTmpEntityDefinition</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Data source
+    /// </summary>
+    /// <returns> Data source </returns>
+    public TCMTmpEntityDefinition tCMTmpEntityDefinition()
+    {
+        return tmpEntityDefinition;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>doProcess</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process
+    /// </summary>
+    /// <param name = "_dataContract">Instance of data contract class <c>TCMEntityDefinitionContract</c></param>
+    public void doProcess(TCMEntityDefinitionContract _dataContract)
+    {
+        this.populate(_dataContract.parmEntityName());
+        this.openForm();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>openForm</Name>
+				<Source><![CDATA[
+    private void openForm()
+    {
+        var args = new Args();
+        args.caller(this);
+                
+        MenuFunction::runCalled(menuItemDisplayStr(TCMEntityDefinitionForm),MenuItemType::Display, false, args);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>populate</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Populate data
+    /// </summary>
+    /// <param name = "_entityName">Entity name</param>
+    protected void populate(EntityName _entityName)
+    {
+        try
+        {
+            delete_from tmpEntityDefinition;
+               
+            Microsoft.Dynamics.AX.Metadata.MetaModel.AxDataEntityView axDataEntity = Microsoft.Dynamics.Ax.Xpp.MetadataSupport::GetDataEntityView(_entityName);
+                        
+            if (axDataEntity)
+            {
+                var recordInsertList = new RecordInsertList(tableNum(TCMTmpEntityDefinition), true, false, false, false, false, tmpEntityDefinition);
+
+                var dataEntityFields = axDataEntity.Fields;
+    
+                var le = dataEntityFields.GetEnumerator();
+                while (le.moveNext())
+                {
+                    var entityViewField = le.Current as Microsoft.Dynamics.AX.Metadata.MetaModel.AxDataEntityViewField;
+                    if (entityViewField != null)
+                    {
+                        tmpEntityDefinition.clear();
+                        tmpEntityDefinition.initValue();
+                        tmpEntityDefinition.initFromAxDataEntityViewField(entityViewField);
+      
+                        var tableId = tableName2Id(_entityName);
+                        if (tableId != 0)
+                        {
+                            var sysDictField = new SysDictField(tableId, fieldName2Id(tableId, entityViewField.Name));
+                            if (sysDictField != null)
+                            {
+                                tmpEntityDefinition.initFromSysDictField(sysDictField);
+                            }
+                        }
+
+                        recordInsertList.add(tmpEntityDefinition);
+                    }
+                }
+
+                recordInsertList.insertDatabase();
+            }
+        }
+        catch
+        {
+            throw error("@TCM:OperationCanceled");
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

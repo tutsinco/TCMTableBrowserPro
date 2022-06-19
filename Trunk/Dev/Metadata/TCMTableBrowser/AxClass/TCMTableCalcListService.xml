@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>TCMTableCalcListService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+using Microsoft.Dynamics.AX.Metadata.MetaModel;
+
+
+/// <summary>
+/// Calculation table list service
+/// </summary>
+class TCMTableCalcListService
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>processOperation</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process operation
+    /// </summary>
+    public void processOperation()
+    {
+        ttsbegin;
+
+        this.cleanUpData();
+        this.recalc();
+
+        ttscommit;
+
+        info("@TCM:RefreshIsDone");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>cleanUpData</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Clean up date
+    /// </summary>
+    protected void cleanUpData()
+    {
+        TCMTableList tableList;
+        
+        delete_from tableList;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>recalc</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Recalculate
+    /// </summary>
+    protected void recalc()
+    {                                           
+        var provider = TCMTableBrowserUtil::getRunTimeMetadataProvider();
+        var service = new Microsoft.Dynamics.AX.Metadata.Service.MetaModelServiceFactory().Create(provider);
+
+        var recordInsertList = new RecordInsertList(tableNum(TCMTableList));
+              
+        this.processTableList(service, recordInsertList);        
+        this.processViewList(service, recordInsertList);
+        
+        recordInsertList.insertDatabase();                
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processTableList</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process table list
+    /// </summary>
+    /// <param name = "_service">service</param>
+    /// <param name = "_recordInsertList">record insert list</param>
+    protected void processTableList(Microsoft.Dynamics.AX.Metadata.Service.IMetaModelService _service, RecordInsertList _recordInsertList)
+    {    
+        var tableList = _service.GetTableNames();
+                               
+        var le = tableList.GetEnumerator();
+
+        while (le.moveNext())
+        {
+            var tableName = le.get_Current();
+
+            var tableId = tableName2Id(tableName);
+
+            this.processTable(tableId, _recordInsertList);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processViewList</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process views
+    /// </summary>
+    /// <param name = "_service">Service</param>
+    /// <param name = "_recordInsertList">Record insert list</param>
+    protected void processViewList(Microsoft.Dynamics.AX.Metadata.Service.IMetaModelService _service, RecordInsertList _recordInsertList)
+    {
+        var viewList = _service.GetViewNames();
+                               
+        var le = viewList.GetEnumerator();
+
+        while (le.moveNext())
+        {
+            var tableName = le.get_Current();
+
+            var tableId = tableName2Id(tableName);
+
+            this.processTable(tableId, _recordInsertList);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Process tables
+    /// </summary>
+    /// <param name = "_tableId">Table id</param>
+    /// <param name = "_recordInsertList">Record insert list</param>
+    protected void processTable(TableId _tableId, RecordInsertList _recordInsertList)
+    {      
+        TCMTableList tableList;
+
+        var dictTable = new SysDictTable(_tableId);
+        if (dictTable)
+        {
+            if (this.isDictTableValid(dictTable))
+            {
+                tableList.clear();
+                tableList.initValue();
+
+                if (dictTable.isView())
+                {
+                    tableList.RecordType = TCMRecordType::View;
+                }
+
+                tableList.TableName  = tableId2Name(_tableId);
+                tableList.LabelText  = dictTable.label();
+
+                _recordInsertList.add(tableList);
+            }
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isDictTableValid</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Check if <c>SysDictTable</c> must be inserted
+    /// </summary>
+    /// <param name = "_dictTable"><c>SysDictTable</c></param>
+    /// <returns>boolean value</returns>
+    protected boolean isDictTableValid(SysDictTable _dictTable)
+    {
+        boolean ret = true;
+
+        if (_dictTable.isTempDb())
+        {
+            ret = false;
+        }
+
+        return ret;            
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
