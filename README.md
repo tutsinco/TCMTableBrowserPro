@@ -5,18 +5,18 @@ Table Browser Pro improves technical team productivity during the implementation
 ## Features
 
 Browse table list<br/>
-Open table browser from a list<br/>
-View table fields metadata<br/>
-View hidden fields values<br/>
-Browse entity list<br/>
-View entity fields metadata<br/>
-Get shareable links for entities and tables<br/>
+- Open table browser from a list<br/>
+- View table fields metadata<br/>
+- View hidden fields values<br/>
+- Browse entity list<br/>
+- View entity fields metadata<br/>
+- Get shareable links for entities and tables<br/>
 
 ## Benefits
 
-No need in the development environment access<br/>
-Table definition export for data integration<br/>
-Quick data lookup in production and testing environments without SQL server access<br/>
+- No need in the development environment access<br/>
+- Table definition export for data integration<br/>
+- Quick data lookup in production and testing environments without SQL server access<br/>
 
 ## Installation
 
