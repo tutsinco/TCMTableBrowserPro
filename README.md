@@ -1,6 +1,6 @@
 # TableBrowserPro
 
-Table Browser Pro improves technical team productivity during the implementation phase of the project.
+Table Browser Pro improves technical team productivity during the project's implementation phase.
 
 ## Features
 
@@ -27,7 +27,7 @@ K:\AosService\PackagesLocalDirectory<br/>
 or
 C:\AosService\PackagesLocalDirectory<br/>
 3. Create new folder inside with the name TCMTableBrowser
-4. Move downloaded package.The path must looks like: <br/>
+4. Move downloaded package.he path must look like this: <br/>
 TCMTableBrowser\Descriptor<br/>
 TCMTableBrowser\TCMTableBrowser<br/>
 
