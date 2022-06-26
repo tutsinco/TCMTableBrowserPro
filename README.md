@@ -33,3 +33,6 @@ TCMTableBrowser\TCMTableBrowser<br/>
 
 5. Refresh the model list from Visual Studio<br/>
 6. Build model TCMTableBrowser with the "Synchronize Database" option<br/>
+7. Navigate to the System administration > Inquiries -> Table browser <br/>
+8. Hit the "Refresh list" button <br/>
+9. Wait until the batch finishes and refresh the page
