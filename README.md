@@ -22,8 +22,7 @@ Table Browser Pro improves technical team productivity during the project's impl
 
 1. Download code<br/>
 2. Extract package <br/>
-3. Go to the PackagesLocalDirectory folder<br/>
-Navigate to the folder PackagesLocalDirectory<br/>
+3. Navigate to the folder PackagesLocalDirectory<br/>
 K:\AosService\PackagesLocalDirectory<br/>
 or
 C:\AosService\PackagesLocalDirectory<br/>
