@@ -27,8 +27,7 @@ K:\AosService\PackagesLocalDirectory<br/>
 or
 C:\AosService\PackagesLocalDirectory<br/>
 3. Create new folder inside with the name TCMTableBrowser
-4. Move downloaded package
-The path must looks like <br/>
+4. Move downloaded package.The path must looks like <br/>
 TCMTableBrowser\Descriptor<br/>
 TCMTableBrowser\TCMTableBrowser<br/>
 
