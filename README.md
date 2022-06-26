@@ -4,7 +4,7 @@ Table Browser Pro improves technical team productivity during the implementation
 
 ## Features
 
-Browse table list<br/>
+- Browse table list<br/>
 - Open table browser from a list<br/>
 - View table fields metadata<br/>
 - View hidden fields values<br/>
