@@ -28,9 +28,9 @@ K:\AosService\PackagesLocalDirectory<br/>
 or
 C:\AosService\PackagesLocalDirectory<br/>
 3. Create new folder inside with the name TCMTableBrowser
-4. Move downloaded code. The path must look like this: <br/>
+4. Move files from the Metadata folder. The path must look like this: <br/>
 TCMTableBrowser\Descriptor<br/>
 TCMTableBrowser\TCMTableBrowser<br/>
 
 5. Refresh the model list from Visual Studio<br/>
-6. Build model TCMTableBrowser with "Synchronize Database" option<br/>
+6. Build model TCMTableBrowser with the "Synchronize Database" option<br/>
