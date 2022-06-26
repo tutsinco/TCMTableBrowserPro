@@ -21,13 +21,14 @@ Table Browser Pro improves technical team productivity during the project's impl
 ## Installation
 
 1. Download code<br/>
-2. Go to the PackagesLocalDirectory folder<br/>
+2. Extract package <br/>
+3. Go to the PackagesLocalDirectory folder<br/>
 Navigate to the folder PackagesLocalDirectory<br/>
 K:\AosService\PackagesLocalDirectory<br/>
 or
 C:\AosService\PackagesLocalDirectory<br/>
 3. Create new folder inside with the name TCMTableBrowser
-4. Move downloaded package.he path must look like this: <br/>
+4. Move downloaded code. The path must look like this: <br/>
 TCMTableBrowser\Descriptor<br/>
 TCMTableBrowser\TCMTableBrowser<br/>
 
